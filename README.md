@@ -1,6 +1,20 @@
 # Loading videos to Tensor in PyTorch
 
-There are many ways to laod videos, but in oder to accelerate the training speed in video models, I tried different packages to see which one is the best.
+There are many ways to load videos, but in oder to accelerate the training speed in video models, I tried different packages to see which one is the best.
+
+The test videos is come from the [MSVD](https://www.cs.utexas.edu/users/ml/clamp/videoDescription/) dataset.
+
+## Install
+
+1. Clone the project
+```shell
+git clone https://github.com/Horizon2333/load_video_as_tensor
+cd load_video_as_tensor
+```
+2. Install dependencies
+```shell
+pip install -r requirements.txt
+```
 
 ## Usage
 First transform the video to images (Because one experiment try to load frames) :
@@ -28,4 +42,6 @@ python test_load_video_speed.py
 |     frames     |          ndarray          |           -            |     Tensor     |        0.29         |        4.73        |        0.22         |       19.83       |
 | torchvision.io |          Tensor           |           -            |     Tensor     |        0.49         |        2.40        |        0.10         |       18.02       |
 
-Test on computer with: Intel Core i7-9750H; 16G RAM; Nvidia GeForce GTX 1660Ti with Max-Q Design
+(Test on computer with: Intel Core i7-9750H; 16G RAM; Nvidia GeForce GTX 1660Ti with Max-Q Design)
+
+Seems like the best choice is just to use OpenCV!
