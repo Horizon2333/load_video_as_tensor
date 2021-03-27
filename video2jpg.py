@@ -9,6 +9,9 @@ import cv2
 
 def video2jpg(video_path, output_path):
 
+    if not os.path.exists(output_path):
+        os.mkdir(output_path)
+
     cap = cv2.VideoCapture(video_path)
 
     assert cap.isOpened()
