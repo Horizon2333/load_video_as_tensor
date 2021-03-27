@@ -4,6 +4,32 @@ There are many ways to load videos, but in oder to accelerate the training speed
 
 The test videos is come from the [MSVD](https://www.cs.utexas.edu/users/ml/clamp/videoDescription/) dataset.
 
+## Structure
+```
+$load_video_as_tensor
+    |──test_videos
+        |──big_video
+            |──00000.jpg
+            |── ...
+        |──long_video
+            |──00000.jpg
+            |── ...
+        |──short_video
+            |──00000.jpg
+            |── ...
+        |──small_video
+            |──00000.jpg
+            |── ...
+        |──big_video.avi
+        |──long_video.avi
+        |──short_video.avi
+        |──small_video.avi
+    |──test_load_video_speed.py
+    |──video2jpg.py
+    |──requirements.txt
+    |──README.md
+```
+
 ## Install
 
 1. Clone the project
@@ -48,4 +74,7 @@ Seems like the best choice is just to use OpenCV!
 
 
 
-If there are something wrong with my experiment or there are better ways to load video in RAM, please tell me, thank a lot!
+***
+
+If there are something wrong with my experiments or there are better ways to load videos in RAM, please tell me, thanks a lot!
+
