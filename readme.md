@@ -1,0 +1,31 @@
+# Loading videos to Tensor in PyTorch
+
+There are many ways to laod videos, but in oder to accelerate the training speed in video models, I tried different packages to see which one is the best.
+
+## Usage
+First transform the video to images (Because one experiment try to load frames) :
+
+```shell
+python video2jpg.py
+```
+
+Then, run the experiment:
+
+```shell
+python test_load_video_speed.py
+```
+
+## Result
+
+|     method     |     initial datatype      | intermediate  datatype | final datatype | short video cost /s | long video cost /s | small video cost /s | big video cost /s |
+| :------------: | :-----------------------: | :--------------------: | :------------: | :-----------------: | :----------------: | :-----------------: | :---------------: |
+|     opencv     |          ndarray          |           -            |     Tensor     |        0.15         |        1.08        |        0.08         |       15.34       |
+|     opencv     |          ndarray          |        PILImage        |     Tensor     |        0.27         |        2.27        |        0.12         |       17.35       |
+|  scikit-video  |          ndarray          |           -            |     Tensor     |        0.43         |        1.32        |        0.21         |       16.00       |
+|    imageio     |  imageio.core.util.Array  |        ndarray         |     Tensor     |        0.71         |        3.41        |        0.32         |       18.61       |
+|    vidgear     |          ndarray          |           -            |     Tensor     |        2.21         |       66.26        |        3.44         |       25.58       |
+|      pyav      | av.video.frame.VideoFrame |   PILImage → ndarray   |     Tensor     |        0.41         |        2.04        |        0.12         |       15.92       |
+|     frames     |          ndarray          |           -            |     Tensor     |        0.29         |        4.73        |        0.22         |       19.83       |
+| torchvision.io |          Tensor           |           -            |     Tensor     |        0.49         |        2.40        |        0.10         |       18.02       |
+
+Test on computer with: Intel Core i7-9750H; 16G RAM; Nvidia GeForce GTX 1660Ti with Max-Q Design
