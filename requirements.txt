@@ -1,0 +1,12 @@
+torch
+torchvision
+opencv-python
+pillow
+scikit-video
+kornia
+scikit-image
+imageio
+vidgear
+av
+numpy
+rich
