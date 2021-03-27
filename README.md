@@ -17,19 +17,19 @@ pip install -r requirements.txt
 ```
 
 ## Usage
-First transform the video to images (Because one experiment try to load frames) :
+1.  Transform the video to images (Because one experiment try to load frames) :
 
 ```shell
 python video2jpg.py
 ```
 
-Then, run the experiment:
+2. Run the experiment:
 
 ```shell
 python test_load_video_speed.py
 ```
 
-## Result
+## Results
 
 |     method     |     initial datatype      | intermediate  datatype | final datatype | short video cost /s | long video cost /s | small video cost /s | big video cost /s |
 | :------------: | :-----------------------: | :--------------------: | :------------: | :-----------------: | :----------------: | :-----------------: | :---------------: |
@@ -45,3 +45,7 @@ python test_load_video_speed.py
 (Test on computer with: Intel Core i7-9750H; 16G RAM; Nvidia GeForce GTX 1660Ti with Max-Q Design)
 
 Seems like the best choice is just to use OpenCV!
+
+
+
+If there are something wrong with my experiment or there are better ways to load video in RAM, please tell me, thank a lot!
