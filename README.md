@@ -24,8 +24,8 @@ $load_video_as_tensor
         |──long_video.avi
         |──short_video.avi
         |──small_video.avi
-    |──test_load_video_speed.py
-    |──video2jpg.py
+    |──test_load_video_speed.py  # run experiment(all methods)
+    |──video2jpg.py              # transfer videos to frame by frame images
     |──requirements.txt
     |──README.md
 ```
