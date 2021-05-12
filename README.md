@@ -61,14 +61,14 @@ python test_load_video_speed.py
 
 |     method     |     initial datatype      | intermediate  datatype | final datatype | short video cost /s | long video cost /s | small video cost /s | big video cost /s |
 | :------------: | :-----------------------: | :--------------------: | :------------: | :-----------------: | :----------------: | :-----------------: | :---------------: |
-|     opencv     |          ndarray          |           -            |     Tensor     |        0.15         |        1.08        |        0.08         |       15.34       |
-|     opencv     |          ndarray          |        PILImage        |     Tensor     |        0.27         |        2.27        |        0.12         |       17.35       |
-|  scikit-video  |          ndarray          |           -            |     Tensor     |        0.43         |        1.32        |        0.21         |       16.00       |
-|    imageio     |  imageio.core.util.Array  |        ndarray         |     Tensor     |        0.71         |        3.41        |        0.32         |       18.61       |
-|    vidgear     |          ndarray          |           -            |     Tensor     |        2.21         |       66.26        |        3.44         |       25.58       |
-|      pyav      | av.video.frame.VideoFrame |   PILImage → ndarray   |     Tensor     |        0.41         |        2.04        |        0.12         |       15.92       |
-|     frames     |          ndarray          |           -            |     Tensor     |        0.29         |        4.73        |        0.22         |       19.83       |
-| torchvision.io |          Tensor           |           -            |     Tensor     |        0.49         |        2.40        |        0.10         |       18.02       |
+|     opencv     |          ndarray          |           -            |     Tensor     |        0.11         |        1.09        |        0.07         |       12.82       |
+|     opencv     |          ndarray          |        PILImage        |     Tensor     |        0.24         |        1.82        |        0.10         |       15.54       |
+|  scikit-video  |          ndarray          |           -            |     Tensor     |        0.52         |        1.10        |        0.18         |       15.63       |
+|    imageio     |  imageio.core.util.Array  |        ndarray         |     Tensor     |        0.74         |        3.03        |        0.30         |       16.51       |
+|    vidgear     |          ndarray          |           -            |     Tensor     |        1.87         |       56.30        |        2.82         |       20.21       |
+|      pyav      | av.video.frame.VideoFrame |   PILImage → ndarray   |     Tensor     |        0.50         |        1.91        |        0.11         |       13.91       |
+|     frames     |          ndarray          |           -            |     Tensor     |        0.26         |        4.41        |        0.19         |       17.28       |
+| torchvision.io |          Tensor           |           -            |     Tensor     |        0.42         |        2.64        |        0.09         |       13.80       |
 
 (Test on computer with: Intel Core i7-9750H; 16G RAM; Nvidia GeForce GTX 1660Ti with Max-Q Design)
 

@@ -26,9 +26,8 @@ import numpy as np
 import os
 import time
 
-from rich.console import Console
-from rich.table import Table
-from rich.progress import Progress
+#from rich.console import Console
+#from rich.table import Table
 
 def cv2_loadvideo(video_path):
 
@@ -250,6 +249,8 @@ def task(method):
 
 if(__name__ == "__main__"):
 
+    '''
+
     console = Console()
 
     table = Table(show_header=True, header_style="bold magenta")
@@ -262,56 +263,70 @@ if(__name__ == "__main__"):
     table.add_column("small video cost /s"   , justify="center")
     table.add_column("big video cost /s"     , justify="center")
 
-    with Progress() as progress:
-
-        testing_task = progress.add_task("[red]Testing...", total=8)
+    '''
         
-        #1.opencv → Tensor
-        time_short, time_long, time_small, time_big = task(cv2_loadvideo)
-        table.add_row("opencv", "ndarray", "-", "Tensor", 
-                        '{:.2f}'.format(time_short), '{:.2f}'.format(time_long), '{:.2f}'.format(time_small), '{:.2f}'.format(time_big))
-        progress.update(testing_task, advance=1)
-        
-        #2.opencv → PIL → Tensor
-        time_short, time_long, time_small, time_big = task(cv2_to_PIL_loadvideo)
-        table.add_row("opencv", "ndarray", "PILImage", "Tensor", 
-                        '{:.2f}'.format(time_short), '{:.2f}'.format(time_long), '{:.2f}'.format(time_small), '{:.2f}'.format(time_big))
-        progress.update(testing_task, advance=1)
-
-        #3.scikit-video → Tensor
-        time_short, time_long, time_small, time_big = task(sk_video_loadvideo)
-        table.add_row("scikit-video", "ndarray", "-", "Tensor", 
-                        '{:.2f}'.format(time_short), '{:.2f}'.format(time_long), '{:.2f}'.format(time_small), '{:.2f}'.format(time_big))
-        progress.update(testing_task, advance=1)
-
-        #4.imageio → Tensor
-        time_short, time_long, time_small, time_big = task(imageio_loadvideo)
-        table.add_row("imageio", "imageio.core.util.Array", "ndarray", "Tensor", 
-                        '{:.2f}'.format(time_short), '{:.2f}'.format(time_long), '{:.2f}'.format(time_small), '{:.2f}'.format(time_big))
-        progress.update(testing_task, advance=1)
-        
-        #5.imageio → Tensor
-        time_short, time_long, time_small, time_big = task(vidgear_loadvideo)
-        table.add_row("vidgear", "ndarray", "-", "Tensor", 
-                        '{:.2f}'.format(time_short), '{:.2f}'.format(time_long), '{:.2f}'.format(time_small), '{:.2f}'.format(time_big))
-        progress.update(testing_task, advance=1)
-        
-        #6.pyav → Tensor
-        time_short, time_long, time_small, time_big = task(pyav_loadvideo)
-        table.add_row("pyav", "av.video.frame.VideoFrame", "PILImage → ndarray", "Tensor", 
-                        '{:.2f}'.format(time_short), '{:.2f}'.format(time_long), '{:.2f}'.format(time_small), '{:.2f}'.format(time_big))
-        progress.update(testing_task, advance=1)
-
-        #7.frames → Tensor
-        time_short, time_long, time_small, time_big = task(load_frames)
-        table.add_row("frames", "ndarray", "-", "Tensor", 
-                        '{:.2f}'.format(time_short), '{:.2f}'.format(time_long), '{:.2f}'.format(time_small), '{:.2f}'.format(time_big))
-        progress.update(testing_task, advance=1)
-        
-        #8.torchvision.io → Tensor
-        time_short, time_long, time_small, time_big = task(torchio_loadvideo)
-        table.add_row("torchvision.io", "Tensor", "-", "Tensor", 
-                        '{:.2f}'.format(time_short), '{:.2f}'.format(time_long), '{:.2f}'.format(time_small), '{:.2f}'.format(time_big))
-        progress.update(testing_task, advance=1)
+    #1.opencv → Tensor
+    time_short, time_long, time_small, time_big = task(cv2_loadvideo)
+    print("opencv: ndarray → Tensor")
+    print("{:2.2f} {:2.2f} {:2.2f} {:2.2f}".format(time_short, time_long, time_small, time_big))
+    print()
+    #table.addrow("opencv", "ndarray", "-", "Tensor", 
+    #                '{:.2f}'.format(time_short), '{:.2f}'.format(time_long), '{:.2f}'.format(time_small), '{:.2f}'.format(time_big))
     
-    console.print(table)
+    #2.opencv → PIL → Tensor
+    time_short, time_long, time_small, time_big = task(cv2_to_PIL_loadvideo)
+    print("opencv: ndarray → PILImage → Tensor")
+    print("{:2.2f} {:2.2f} {:2.2f} {:2.2f}".format(time_short, time_long, time_small, time_big))
+    print()
+    #table.add_row("opencv", "ndarray", "PILImage", "Tensor", 
+    #                '{:.2f}'.format(time_short), '{:.2f}'.format(time_long), '{:.2f}'.format(time_small), '{:.2f}'.format(time_big))
+
+    #3.scikit-video → Tensor
+    time_short, time_long, time_small, time_big = task(sk_video_loadvideo)
+    print("scikit-video: ndarray → Tensor")
+    print("{:2.2f} {:2.2f} {:2.2f} {:2.2f}".format(time_short, time_long, time_small, time_big))
+    print()
+    #table.add_row("scikit-video", "ndarray", "-", "Tensor", 
+    #                '{:.2f}'.format(time_short), '{:.2f}'.format(time_long), '{:.2f}'.format(time_small), '{:.2f}'.format(time_big))
+
+    #4.imageio → Tensor
+    time_short, time_long, time_small, time_big = task(imageio_loadvideo)
+    print("imageio: imageio.core.util.Array → ndarray → Tensor")
+    print("{:2.2f} {:2.2f} {:2.2f} {:2.2f}".format(time_short, time_long, time_small, time_big))
+    print()
+    #table.add_row("imageio", "imageio.core.util.Array", "ndarray", "Tensor", 
+    #                '{:.2f}'.format(time_short), '{:.2f}'.format(time_long), '{:.2f}'.format(time_small), '{:.2f}'.format(time_big))
+    
+    #5.vidgear → Tensor
+    time_short, time_long, time_small, time_big = task(vidgear_loadvideo)
+    print("vidgear: ndarray → Tensor")
+    print("{:2.2f} {:2.2f} {:2.2f} {:2.2f}".format(time_short, time_long, time_small, time_big))
+    print()
+    #table.add_row("vidgear", "ndarray", "-", "Tensor", 
+    #                '{:.2f}'.format(time_short), '{:.2f}'.format(time_long), '{:.2f}'.format(time_small), '{:.2f}'.format(time_big))
+    
+    #6.pyav → Tensor
+    time_short, time_long, time_small, time_big = task(pyav_loadvideo)
+    print("pyav: av.video.frame.VideoFrame → PILImage → ndarray → Tensor")
+    print("{:2.2f} {:2.2f} {:2.2f} {:2.2f}".format(time_short, time_long, time_small, time_big))
+    print()
+    #table.add_row("pyav", "av.video.frame.VideoFrame", "PILImage → ndarray", "Tensor", 
+    #                '{:.2f}'.format(time_short), '{:.2f}'.format(time_long), '{:.2f}'.format(time_small), '{:.2f}'.format(time_big))
+
+    #7.frames → Tensor
+    time_short, time_long, time_small, time_big = task(load_frames)
+    print("frames: ndarray → Tensor")
+    print("{:2.2f} {:2.2f} {:2.2f} {:2.2f}".format(time_short, time_long, time_small, time_big))
+    print()
+    #table.add_row("frames", "ndarray", "-", "Tensor", 
+    #                '{:.2f}'.format(time_short), '{:.2f}'.format(time_long), '{:.2f}'.format(time_small), '{:.2f}'.format(time_big))
+    
+    #8.torchvision.io → Tensor
+    time_short, time_long, time_small, time_big = task(torchio_loadvideo)
+    print("torchvision.io: Tensor")
+    print("{:2.2f} {:2.2f} {:2.2f} {:2.2f}".format(time_short, time_long, time_small, time_big))
+    print()
+    #table.add_row("torchvision.io", "Tensor", "-", "Tensor", 
+    #                '{:.2f}'.format(time_short), '{:.2f}'.format(time_long), '{:.2f}'.format(time_small), '{:.2f}'.format(time_big))
+    
+    #console.print(table)
