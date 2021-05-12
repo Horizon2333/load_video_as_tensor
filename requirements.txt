@@ -9,4 +9,3 @@ imageio
 vidgear
 av
 numpy
-rich
